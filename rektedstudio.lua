@@ -363,10 +363,11 @@ end)
 ToolsHorizontal:AddButton("Give Tool x10", function()
     for i, v in pairs(game:GetService("Workspace"):GetDescendants()) do
         if (v:IsA("Tool") or v:IsA("HopperBin")) and v.Name == selectedItem and v.Parent:FindFirstChild("GiverScript") then
+            local cooldown = v.Parent.GiverScript:FindFirstChild("Cooldown").Value + 0.2
             for i = 1, 10 do
                 firetouchinterest(game:GetService("Players").LocalPlayer.Character:FindFirstChild("Torso"), v.Parent, 0)
                 firetouchinterest(game:GetService("Players").LocalPlayer.Character:FindFirstChild("Torso"), v.Parent, 1)
-                wait()
+                wait(cooldown)
             end
         end
     end
@@ -374,10 +375,11 @@ end)
 ToolsHorizontal:AddButton("Give Tool x100", function()
     for i, v in pairs(game:GetService("Workspace"):GetDescendants()) do
         if (v:IsA("Tool") or v:IsA("HopperBin")) and v.Name == selectedItem and v.Parent:FindFirstChild("GiverScript") then
+            local cooldown = v.Parent.GiverScript:FindFirstChild("Cooldown").Value + 0.2
             for i = 1, 100 do
                 firetouchinterest(game:GetService("Players").LocalPlayer.Character:FindFirstChild("Torso"), v.Parent, 0)
                 firetouchinterest(game:GetService("Players").LocalPlayer.Character:FindFirstChild("Torso"), v.Parent, 1)
-                wait()
+                wait(cooldown)
             end
         end
     end
@@ -503,7 +505,7 @@ Tools:AddButton("Drop Tools", function()
 end)
 Tools:AddButton("Delete All (BTools needed)", function()
     for i,v in pairs(workspace:GetDescendants()) do
-        if v:IsA("Part") and v.Locked == false then
+        if v:IsA("BasePart") and v.Locked == false then
             game:GetService("Players").LocalPlayer.Backpack.Hammer.MouseDown:FireServer(v)
         end
     end
